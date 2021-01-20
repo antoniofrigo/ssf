@@ -8,14 +8,16 @@ class Integration {
   public:
     Integration(Model *i_model, int i_dim);
     
-    void SetStep(double h);
+    void SetStepSize(double h);
     double GetStepSize() const;
+    void PrintState() const;
 
     virtual ~Integration();
-    virtual void SetInitial(double *state) = 0;
+    virtual void SetInitial(double *state);
 
   protected:
     Model *i_model;
+    double *i_state;
     int i_ndim; 
     double i_h;
     double i_time;

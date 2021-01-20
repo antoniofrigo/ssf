@@ -5,12 +5,10 @@
 
 class FallingObject : public Model {
   public:
+    FallingObject(int id, int ndim);
     ~FallingObject();
 
     void EvaluateAt(double *output, double *state, double time);
-    void SetInitialState(double *state);
-  private:
-    double *m_state;
 }; 
 
 #endif

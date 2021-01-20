@@ -1,18 +1,19 @@
 #include "model/model.hpp"
 
-Model::Model(const int id, const int ndim){
-  this->m_id = id;
-  this->m_ndim = ndim;
-}
+Model::Model(int id, int ndim) : 
+  m_id(id),
+  m_ndim(ndim) {}
 
 Model::~Model(){}
 
-void Model::SetInitialState(double *state){}
-
-void Model::SetDim(double ndim){
-  this->m_ndim = ndim;
+void Model::SetInitial(double *state){
+  m_initial = state;
 }
 
-void Mode::GetDim() const {
+void Model::SetDim(double ndim){
+  m_ndim = ndim;
+}
+
+int Model::GetDim() const {
   return m_ndim;
 }

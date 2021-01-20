@@ -3,18 +3,19 @@
 
 class Model {
   public:
-    Model(const int m_id, const int m_ndim); 
+    Model(int m_id, int m_ndim); 
     virtual ~Model();
 
     void SetDim(double ndim);
     int GetDim() const;
+    void SetInitial(double *state);
 
     virtual void EvaluateAt(double *output, double *state, double time) = 0;
-    virtual void SetInitialState(double *state) = 0;
 
-  private:
+  protected:
     int m_ndim;
     int m_id; 
+    double *m_initial;
 };
 
 #endif

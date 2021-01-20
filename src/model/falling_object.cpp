@@ -1,8 +1,10 @@
+#include "model/model.hpp"
 #include "model/falling_object.hpp"
 
-void FallingObject::SetInitialState(double *state){
-  m_state = state;
-}
+FallingObject::FallingObject(int id, int ndim) : 
+  Model(id, ndim){}
+
+FallingObject::~FallingObject(){}
 
 void FallingObject::EvaluateAt(double *output, double *state, double time){
   output[0] = state[2];
