@@ -1,15 +1,24 @@
 #ifndef INTEGRATION_H
 #define INTEGRATION_H
 
+#include "model/model.hpp"
+
 class Integration {
   // Base class for integration methods
   public:
-    void Init();
-    void SetTimestep();
+    Integration(Model *i_model, int i_dim);
+    
+    void SetStep(double h);
+    double GetStepSize() const;
+
+    virtual ~Integration();
+    virtual void SetInitial(double *state) = 0;
 
   protected:
-    void Evaluate();
-
-}
+    Model *i_model;
+    int i_ndim; 
+    double i_h;
+    double i_time;
+};
 
 #endif
