@@ -8,6 +8,7 @@ class RK4 : public Integration{
   public:
     RK4(Model *i_model, int i_dim);
     ~RK4();
+
     void ComputeStep();
 
   private:

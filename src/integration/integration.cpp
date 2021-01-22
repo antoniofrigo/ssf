@@ -7,6 +7,16 @@ Integration::Integration(Model *model, int ndim):
 
 Integration::~Integration(){}
 
+int Integration::GetDim() const{
+  return i_ndim;
+}
+
+void Integration::GetState(double *output) const{
+  for (int i = 0; i < i_ndim; ++i) {
+    output[i] = i_state[i];
+  }
+}
+
 void Integration::SetStepSize(double h){
   i_h = h;
 }
