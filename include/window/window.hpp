@@ -1,32 +1,29 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <GL/glew.h>
-#include <SDL2/SDL.h>
-#include <string>
+#include <iostream>
+
+#include "SDL2/SDL.h"
 
 class Window {
-  public:
-    Window(int width, int height, std::string title);
-    ~Window();
-    void CreateWindow();
-    void CreateOpenGLContext();
-    void GetWindow(SDL_Window * window) const;
-    virtual void WindowLoop();
+  // Base class to draw window
+ public:
+  Window(int width, int height);
+  ~Window();
 
-    virtual void HandleEvent(SDL_Event &windowEvent);
-    virtual void UpdateScene();
-    virtual void DrawGraphics();
-    virtual void PresentGraphics();
-    virtual void Unload();
+  void OpenWindow();
+  void SetWindowTitle(char* title);
+  virtual void HandleInput(SDL_Event* e);
+  virtual void DrawScene();
 
-  protected:
-    int w_width;
-    int w_height;
-    std::string w_title;
+ protected:
+  int w_width;
+  int w_height;
+  bool w_open;
+  char* w_title;
 
-    bool w_open;
-    SDL_GLContext w_context;
-    SDL_Window * w_window;
+  SDL_Window* w_window;
+  SDL_Renderer* w_render;
 };
+
 #endif

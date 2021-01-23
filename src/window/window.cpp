@@ -1,60 +1,64 @@
-#include <GL/glew.h>
-#include <SDL2/SDL.h>
-
-#include <iostream>
 #include "window/window.hpp"
 
-Window::Window(int width, int height, std::string title) :
-  w_width(width),
-  w_height(height),
-  w_title(title),
-  w_open(true){
-  }
+#include <iostream>
 
-Window::~Window(){
-  SDL_GL_DeleteContext(w_context);
+Window::Window(int width, int height)
+    : w_height(height), w_width(width), w_window(nullptr), w_open(false) {}
+
+Window::~Window() {
+  SDL_DestroyRenderer(w_render);
+  SDL_DestroyWindow(w_window);
   SDL_Quit();
 }
 
-void Window::GetWindow(SDL_Window * window) const {
-  window = w_window;
-}
+void Window::OpenWindow() {
+  SDL_Init(SDL_INIT_VIDEO);
+  w_window =
+      SDL_CreateWindow(w_title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+                       w_width, w_height, SDL_WINDOW_SHOWN);
+  w_render = SDL_CreateRenderer(w_window, -1, SDL_RENDERER_ACCELERATED);
 
-void Window::CreateWindow(){
-    SDL_Init(SDL_INIT_VIDEO);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
-    SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-    w_window = SDL_CreateWindow("testing", 0, 0, w_width, w_height, SDL_WINDOW_OPENGL);
-}
+  w_open = true;
 
-void Window::WindowLoop() {
-  w_context = SDL_GL_CreateContext(w_window);
-  glewExperimental = GL_TRUE;
-  glewInit();
-  SDL_Event windowEvent;
-  while (true)
-  {
-    if (windowEvent.type == SDL_QUIT) {break;}
-    if (SDL_PollEvent(&windowEvent)){
-      if (windowEvent.key.keysym.sym == SDLK_ESCAPE) break;
+  while (w_open) {
+    SDL_Event e;
+    // Main input loop
+    while (SDL_PollEvent(&e)) {
+      if (e.type == SDL_QUIT) {
+        w_open = false;
+        break;
+      }
+      Window::HandleInput(&e);
     }
-    SDL_GL_SwapWindow(w_window); 
-    this->UpdateScene();
-    this->DrawGraphics();
-    this->PresentGraphics();
+
+    Window::DrawScene();
   }
-  this->Unload();
 }
 
-void Window::HandleEvent(SDL_Event &windowEvent){}
+void Window::SetWindowTitle(char* title) { w_title = title; }
 
-void Window::UpdateScene() {}
+void Window::HandleInput(SDL_Event* e) {
+  // Handles keyboard inputs
+  switch (e->type) {
+    case SDL_KEYDOWN:
+      switch (e->key.keysym.sym) {
+        case (SDLK_q):
+          w_open = false;
+      }
+  }
+}
 
-void Window::DrawGraphics() {}
+void Window::DrawScene() {
+  // Draws test rectangle
+  SDL_RenderClear(w_render);
+  SDL_Rect rect;
+  rect.x = 250;
+  rect.y = 150;
+  rect.w = 200;
+  rect.h = 200;
 
-void Window::PresentGraphics() {}
-
-void Window::Unload() {}
-
+  SDL_SetRenderDrawColor(w_render, 0, 255, 255, 255);
+  SDL_RenderFillRect(w_render, &rect);
+  SDL_SetRenderDrawColor(w_render, 0, 0, 0, 255);
+  SDL_RenderPresent(w_render);
+}
