@@ -22,10 +22,10 @@ OBJECTS = $(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
 DEPS = $(OBJECTS:.o=.d)
 
 # flags #
-COMPILE_FLAGS = -std=c++11 -Wall -Wextra -g -DGLEW_STATIC
+COMPILE_FLAGS = -std=c++11 -Wall -Wextra -g
 INCLUDES = -I include/
 # Space-separated pkg-config libraries used by this project
-LIBS = -lglut -lGLEW -lGL -lSDL2
+LIBS = -lSDL2
 
 .PHONY: default_target
 default_target: release

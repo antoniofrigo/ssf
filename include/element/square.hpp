@@ -3,14 +3,12 @@
 
 #include <SDL2/SDL.h>
 
-#include "element/element.hpp"
-
-class Square : public Element {
+class Square{
  public:
-  Square(SDL_Renderer* render);
+  Square();
   ~Square();
 
-  void Draw(int x, int y, int l);
+  void Draw(int x, int y, int l, SDL_Renderer* render);
 };
 
 #endif
