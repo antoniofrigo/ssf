@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stdexcept>
 
+// #include <SDL2/SDL_ttf.h>
 #include "SDL2/SDL.h"
 
 class Window {
