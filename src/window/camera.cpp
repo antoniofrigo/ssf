@@ -96,3 +96,11 @@ void Camera::PrintLocationSpherical() const {
   std::cout << "Theta: " << theta << " ";
   std::cout << "R: " << r << std::endl;
 }
+
+int Camera::GetPhi() const { return phi; }
+
+int Camera::GetTheta() const { return theta; }
+
+int Camera::GetR() const { return r; }
+
+double Camera::GetZoom() const { return zoom; }

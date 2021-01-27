@@ -25,7 +25,7 @@ DEPS = $(OBJECTS:.o=.d)
 COMPILE_FLAGS = -std=c++11 -Wall -Wextra -g
 INCLUDES = -I include/
 # Space-separated pkg-config libraries used by this project
-LIBS = -lSDL2
+LIBS = -lSDL2 -lSDL2_ttf
 
 .PHONY: default_target
 default_target: release

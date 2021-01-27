@@ -9,6 +9,11 @@ class Camera {
   Camera();
   ~Camera();
 
+  int GetPhi() const;
+  int GetTheta() const;
+  int GetR() const;
+  double GetZoom() const;
+
   void IncrementPhi();
   void IncrementTheta();
   void IncrementR();
@@ -37,7 +42,6 @@ class Camera {
   double cx;
   double cy;
   double cz;
-
 };
 
 #endif

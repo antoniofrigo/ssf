@@ -11,6 +11,7 @@ Window::Window()
 Window::~Window() {
   SDL_DestroyRenderer(w_render);
   SDL_DestroyWindow(w_window);
+  TTF_Quit();
   SDL_Quit();
 }
 
@@ -64,10 +65,13 @@ void Window::CreateWindow() {
   CheckInit();
   SDL_Init(SDL_INIT_VIDEO);
   w_window =
-      SDL_CreateWindow("HERE", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+      SDL_CreateWindow("Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                        w_width, w_height, SDL_WINDOW_SHOWN);
   w_render = SDL_CreateRenderer(w_window, -1, SDL_RENDERER_ACCELERATED);
   w_open = true;
+  TTF_Init();
+
+  font = TTF_OpenFont("include/window/Roboto-Regular.ttf", 14);
   MainLoop();
 }
 
@@ -98,6 +102,23 @@ void Window::MainLoop() {
       return;
     }
   }
+}
+
+void Window::DisplayText(const char* msg, int x, int y) {
+  SDL_Color white = {255, 255, 255, 255};
+
+  SDL_Rect msg_rect;
+  msg_rect.x = x;
+  msg_rect.y = y;
+
+  SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, msg, white);
+  SDL_Texture* Message = SDL_CreateTextureFromSurface(w_render, surfaceMessage);
+
+  SDL_QueryTexture(Message, NULL, NULL, &msg_rect.w, &msg_rect.h);
+  SDL_RenderCopy(w_render, Message, NULL, &msg_rect);
+
+  SDL_FreeSurface(surfaceMessage);
+  SDL_DestroyTexture(Message);
 }
 
 void Window::HandleQuit(SDL_Event* e) {

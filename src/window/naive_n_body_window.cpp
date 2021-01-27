@@ -10,6 +10,19 @@ void NaiveNBodyWindow::DrawScene(int frame) {
   SDL_RenderClear(w_render);
 
   DrawAxisLines();
+  int phi = Cam.GetPhi();
+  int theta = Cam.GetTheta();
+  float zoom = Cam.GetZoom();
+
+  std::string msg = "Phi = " + std::to_string(phi);
+  DisplayText(msg.c_str(), 10, 10);
+
+  msg = "Theta = " + std::to_string(theta);
+  DisplayText(msg.c_str(), 10, 30);
+
+  msg = "Zoom = " + std::to_string(1 / zoom);
+  DisplayText(msg.c_str(), 10, 50);
+
   int x, y, z;
   for (int i = 0; i < m_bodies; ++i) {
     x = state[frame][3 * i + 0] / 1e9;
@@ -70,27 +83,21 @@ void NaiveNBodyWindow::HandleInput(SDL_Event* e) {
       switch (e->key.keysym.sym) {
         case (SDLK_UP):
           Cam.IncrementTheta();
-          Cam.PrintLocationSpherical();
           break;
         case (SDLK_DOWN):
           Cam.DecrementTheta();
-          Cam.PrintLocationSpherical();
           break;
         case (SDLK_RIGHT):
           Cam.IncrementPhi();
-          Cam.PrintLocationSpherical();
           break;
         case (SDLK_LEFT):
           Cam.DecrementPhi();
-          Cam.PrintLocationSpherical();
           break;
         case (SDLK_x):
           Cam.IncrementZoom();
-          Cam.PrintLocationSpherical();
           break;
         case (SDLK_z):
           Cam.DecrementZoom();
-          Cam.PrintLocationSpherical();
           break;
         default:
           break;

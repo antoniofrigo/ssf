@@ -1,11 +1,12 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+#include <SDL2/SDL_ttf.h>
+
 #include <cmath>
 #include <iostream>
 #include <stdexcept>
 
-// #include <SDL2/SDL_ttf.h>
 #include "SDL2/SDL.h"
 
 class Window {
@@ -33,6 +34,8 @@ class Window {
   virtual void HandleInput(SDL_Event* e);
   virtual void DrawScene(int frame);
 
+  void DisplayText(const char* msg, int x, int y);
+
  protected:
   int w_width;
   int w_height;
@@ -51,6 +54,7 @@ class Window {
 
   SDL_Window* w_window;
   SDL_Renderer* w_render;
+  TTF_Font* font;
 };
 
 #endif
