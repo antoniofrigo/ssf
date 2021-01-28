@@ -7,6 +7,8 @@ A general-purpose framework for running simple simulations. Some useful features
 
 ### General Structure
 
+Header files are in `include/`. 
+
 Suppose we wish to perform a naive N-body simulation by simply integrating the six equations
 that describe a given body using Newton's Law of Gravitation (O(n^2)). This simulation would 
 be defined as a `scenario` with `window`, `model`, and `integration` attributes. In our example:
