@@ -27,6 +27,7 @@ NaiveNBodyScenario::~NaiveNBodyScenario() {
 }
 
 void NaiveNBodyScenario::SetInitial() {
+  // Sets initial conditions for this scenario
   model.GenerateInitial(initial, "planetary");
   for (int i = 0; i < s_cols; ++i) {
     state[0][i] = initial[i];
@@ -37,6 +38,7 @@ void NaiveNBodyScenario::SetInitial() {
 }
 
 void NaiveNBodyScenario::Run() {
+  // Runs simulation
   if (s_set_initial == false) {
     throw std::runtime_error("Initial condition not set in window.");
   }

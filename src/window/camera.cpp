@@ -15,6 +15,7 @@ Camera::Camera()
 Camera::~Camera() {}
 
 void Camera::UpdateLocation() {
+  // Update location of camera 
   pitch = theta * 0.01745;
   roll = 0.0;
   yaw = phi * 0.01745;
@@ -72,6 +73,8 @@ void Camera::DecrementZoom() {
 }
 
 void Camera::Transform(int &x, int &y, int &z) {
+  // Compute position of (x,y,z) relative to camera
+  // based on camera transform
   double lx = x - cx;
   double ly = y - cy;
   double lz = z - cz;

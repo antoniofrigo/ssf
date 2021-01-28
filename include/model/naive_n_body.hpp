@@ -1,5 +1,5 @@
-#ifndef NAIVE_N_BODY
-#define NAIVE_N_BODY
+#ifndef NAIVE_N_BODY_H
+#define NAIVE_N_BODY_H
 
 #include <cstring>
 #include <random>

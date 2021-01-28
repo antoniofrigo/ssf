@@ -130,6 +130,12 @@ void Window::HandleQuit(SDL_Event* e) {
   }
 }
 
-void Window::HandleInput(SDL_Event* e) { (void)e; }
+void Window::HandleInput(SDL_Event* e) {
+  // Virtual function to handle window inputs
+  (void)e;
+}
 
-void Window::DrawScene(int frame) { (void)frame; }
+void Window::DrawScene(int frame) {
+  // Virtual function to draw the scene
+  (void)frame;
+}
