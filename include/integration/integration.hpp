@@ -1,6 +1,8 @@
 #ifndef INTEGRATION_H
 #define INTEGRATION_H
 
+#include <iostream>
+
 #include "model/model.hpp"
 
 class Integration {

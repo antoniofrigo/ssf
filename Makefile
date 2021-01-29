@@ -1,3 +1,5 @@
+# Makefile template modified from mauriciopoppe at
+# https://gist.github.com/mauriciopoppe/de8908f67923091982c8c8136a063ea6
 CXX ?= g++
 
 # path #
@@ -70,6 +72,3 @@ $(BIN_PATH)/$(BIN_NAME): $(OBJECTS)
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.$(SRC_EXT)
 	@echo "Compiling: $< -> $@"
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -MP -MMD -c $< -o $@
-
-# Makefile template modified from mauriciopoppe at
-# https://gist.github.com/mauriciopoppe/de8908f67923091982c8c8136a063ea6

@@ -41,7 +41,8 @@ void RK4::ComputeStep(double *state_old, double *state_new) {
   i_model->EvaluateAt(i_k4, i_temp, i_time);
   // Computes new state
   for (int i = 0; i < i_ndim; ++i) {
-    state_new[i] = state_old[i] + 
+    state_new[i] =
+        state_old[i] +
         i_h * (i_k1[i] + 2.0e0 * (i_k2[i] + i_k3[i]) + i_k4[i]) / 6.0e0;
   }
 

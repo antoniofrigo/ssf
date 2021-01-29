@@ -10,6 +10,7 @@
 #include "window/window.hpp"
 
 class NaiveNBodyWindow : public Window {
+  // Window for drawing N-body simulation
  public:
   NaiveNBodyWindow();
   ~NaiveNBodyWindow();

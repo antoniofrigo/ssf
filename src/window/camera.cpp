@@ -15,7 +15,7 @@ Camera::Camera()
 Camera::~Camera() {}
 
 void Camera::UpdateLocation() {
-  // Update location of camera 
+  // Update location of camera
   pitch = theta * 0.01745;
   roll = 0.0;
   yaw = phi * 0.01745;

@@ -4,11 +4,12 @@
 #include "model/model.hpp"
 
 class FallingObject : public Model {
-  public:
-    FallingObject(int id, int ndim);
-    ~FallingObject();
+  // Model for falling object
+ public:
+  FallingObject(int id, int ndim);
+  ~FallingObject();
 
-    void EvaluateAt(double *output, double *state, double time);
-}; 
+  void EvaluateAt(double *output, double *state, double time);
+};
 
 #endif

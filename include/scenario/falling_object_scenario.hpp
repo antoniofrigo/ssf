@@ -6,6 +6,7 @@
 #include "window/falling_object_window.hpp"
 
 class FallingObjectScenario {
+  // Scenario for falling object
  public:
   FallingObjectScenario(int iterations, double timestep);
   ~FallingObjectScenario();
@@ -15,15 +16,15 @@ class FallingObjectScenario {
   void Run();
 
  private:
-  int s_rows;
-  int s_cols;
+  int s_rows; // Number of rows (total iterations over time)
+  int s_cols; // Number of dimensions (equations to integrate)
 
-  bool s_set_initial;
+  bool s_set_initial; // Whether initial conditions are set
 
-  double h;
-  double time;
-  double *initial;
-  double **state;
+  double h; // Timestep
+  double time; // Current time
+  double *initial; // Initial state
+  double **state; // All states, state[iteration #][equation #]
 
   FallingObject model;
   RK4 integrator;

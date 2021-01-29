@@ -105,6 +105,7 @@ void Window::MainLoop() {
 }
 
 void Window::DisplayText(const char* msg, int x, int y) {
+  // Display text at (x,y)
   SDL_Color white = {255, 255, 255, 255};
 
   SDL_Rect msg_rect;

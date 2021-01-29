@@ -5,6 +5,12 @@ A general-purpose framework for running simple simulations. Some useful features
 - Easily swappable integration classes.
 - Visualization with camera movement (i.e. zoom) using `SDL2`.
 
+### Dependencies
+
+```
+sudo apt-get install libsdl2-dev libsdl2-ttf-dev
+```
+
 ### General Structure
 
 Header files are in `include/`. 

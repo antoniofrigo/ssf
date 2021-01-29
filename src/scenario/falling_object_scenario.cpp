@@ -8,6 +8,7 @@ FallingObjectScenario::FallingObjectScenario(int iterations, double timestep)
       model(1, s_cols),
       integrator(&model, s_cols),
       window() {
+  // Allocate memory for state and initial conditions
   state = new double *[s_rows + 1];
   for (int i = 0; i < s_rows + 1; ++i) {
     state[i] = new double[s_cols];
@@ -25,6 +26,7 @@ FallingObjectScenario::~FallingObjectScenario() {
 }
 
 void FallingObjectScenario::SetInitial(double *initial_cond) {
+  // Set values of initial_cond array to state
   for (int i = 0; i < s_cols; ++i) {
     initial[i] = initial_cond[i];
     state[0][i] = initial_cond[i];
@@ -35,6 +37,7 @@ void FallingObjectScenario::SetInitial(double *initial_cond) {
 }
 
 void FallingObjectScenario::Run() {
+  // Run simulation
   if (s_set_initial == false) {
     throw std::runtime_error("Initial condition not set in window.");
   }

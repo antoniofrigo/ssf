@@ -5,6 +5,7 @@
 #include <iostream>
 
 class Camera {
+  // Camera class
  public:
   Camera();
   ~Camera();

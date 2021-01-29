@@ -6,6 +6,7 @@
 #include "window/naive_n_body_window.hpp"
 
 class NaiveNBodyScenario {
+  // Scenario for naive N body simulation
  public:
   NaiveNBodyScenario(int iterations, double timestep, int num_bodies);
   ~NaiveNBodyScenario();
@@ -15,15 +16,15 @@ class NaiveNBodyScenario {
   void Run();
 
  private:
-  int s_rows;
-  int s_cols;
+  int s_rows; // Number of rows (total iterations over time)
+  int s_cols; // Number of dimensions (equations to integrate)
 
-  bool s_set_initial;
+  bool s_set_initial; // Whether initial conditions are set
 
-  double h;
-  double time;
-  double *initial;
-  double **state;
+  double h; // Timestep
+  double time; // Current time
+  double *initial; // Initial state
+  double **state; // All states, state[iteration #][equation #]
 
   NaiveNBody model;
   RK4 integrator;

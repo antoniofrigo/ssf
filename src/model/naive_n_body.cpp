@@ -1,4 +1,5 @@
 #include "model/naive_n_body.hpp"
+
 #include "model/n_body_utils/n_body_distribution.hpp"
 
 NaiveNBody::NaiveNBody(int id, int num_bodies)
@@ -19,14 +20,16 @@ void NaiveNBody::GenerateInitial(double *output, std::string name) {
 
   if (name == "planetary") {
     distribution.Planetary(output, m_masses, m_bodies, 1e12);
-  }
-  else if (name == "cluster") {
-    distribution.Cluster(output, m_masses,0, m_bodies,0,0,0, 1e12);
+  } else if (name == "cluster") {
+    distribution.Cluster(output, m_masses, 0, m_bodies, 0, 0, 0, 1e12);
   }
 }
 
 void NaiveNBody::EvaluateAt(double *output, double *state, double time) {
-  // Evaluate 
+  // Find derivative array at the current time
+  // Output: 1D array containing vec(dx), vec(dv)
+  // State: 1D array containing current state of simulation
+  // Time: Time coordinate
   (void)time;
   for (int i = 0; i < m_bodies; ++i) {
     output[3 * i + 0] = state[3 * (m_bodies + i) + 0];
